@@ -21,7 +21,11 @@ namespace EveOPreview.Configuration.Implementation
 			this.DisableThumbnail = new Dictionary<string, bool>();
 			this.PriorityClients = new List<string>();
 
-			this.MinimizeToTray = false;
+			this.ThumbnailBorderColors = new Dictionary<string, Color>();
+			this.ShowThumbnailBorders = false;
+
+
+            this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
 
 			this.EnableCompatibilityMode = false;
@@ -113,7 +117,12 @@ namespace EveOPreview.Configuration.Implementation
 		public bool ShowThumbnailOverlays { get; set; }
 		public bool ShowThumbnailFrames { get; set; }
 
-		public bool EnableActiveClientHighlight { get; set; }
+        [JsonProperty]
+        public bool ShowThumbnailBorders { get; set; }
+        [JsonProperty]
+        public Dictionary<string, Color> ThumbnailBorderColors { get; set; }
+
+        public bool EnableActiveClientHighlight { get; set; }
 
 		public Color ActiveClientHighlightColor { get; set; }
 
@@ -123,7 +132,7 @@ namespace EveOPreview.Configuration.Implementation
 		private Dictionary<string, Dictionary<string, Point>> PerClientLayout { get; set; }
 		[JsonProperty]
 		private Dictionary<string, Point> FlatLayout { get; set; }
-		[JsonProperty]
+        [JsonProperty]
 		private Dictionary<string, ClientLayout> ClientLayout { get; set; }
 		[JsonProperty]
 		private Dictionary<string, string> ClientHotkey { get; set; }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Threading;
 using EveOPreview.Configuration;
 using EveOPreview.Mediator.Messages;
@@ -305,11 +307,23 @@ namespace EveOPreview.Services
 				}
 
 				view.IsOverlayEnabled = this._configuration.ShowThumbnailOverlays;
+				
+				Color highlightColor;
+				try
+				{
+                    highlightColor = this._configuration.EnableActiveClientHighlight && (view.Id == this._activeClient.Handle) ? this._configuration.ActiveClientHighlightColor : this._configuration.ThumbnailBorderColors.First(s => s.Key == view.Title).Value;
+                }
+				catch (InvalidOperationException)
+				{
+					// White is the value for default(Color), and we should default to the control color.
+                    highlightColor = SystemColors.Control;
+                }
 
-				view.SetHighlight(this._configuration.EnableActiveClientHighlight && (view.Id == this._activeClient.Handle),
-										this._configuration.ActiveClientHighlightColor, this._configuration.ActiveClientHighlightThickness);
+                var showHighlight = (this._configuration.EnableActiveClientHighlight && (view.Id == this._activeClient.Handle)) || (this._configuration.ShowThumbnailBorders && (highlightColor != SystemColors.Control));
 
-				if (!view.IsActive)
+                view.SetHighlight(showHighlight, highlightColor, this._configuration.ActiveClientHighlightThickness);
+
+                if (!view.IsActive)
 				{
 					view.Show();
 				}

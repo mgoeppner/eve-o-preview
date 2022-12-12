@@ -24,7 +24,7 @@ namespace EveOPreview.View
 		private bool _isTopMost;
 		private bool _isHighlightEnabled;
 		private bool _isHighlightRequested;
-		private int _highlightWidth;
+        private int _highlightWidth;
 
 		private bool _isLocationChanged;
 		private bool _isSizeChanged;
@@ -221,7 +221,7 @@ namespace EveOPreview.View
 
 		public void SetHighlight(bool enabled, Color color, int width)
 		{
-			if (this._isHighlightRequested == enabled)
+			if (this._isHighlightRequested == enabled && this.BackColor == color)
 			{
 				return;
 			}

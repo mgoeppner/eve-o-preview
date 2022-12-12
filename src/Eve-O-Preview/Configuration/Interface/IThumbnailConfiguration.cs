@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace EveOPreview.Configuration
@@ -25,7 +27,11 @@ namespace EveOPreview.Configuration
 		Size ThumbnailMinimumSize { get; set; }
 		Size ThumbnailMaximumSize { get; set; }
 
-		bool EnableThumbnailSnap { get; set; }
+        bool ShowThumbnailBorders { get; set; }
+
+        Dictionary<string, Color> ThumbnailBorderColors { get; set; }
+
+        bool EnableThumbnailSnap { get; set; }
 
 		bool ThumbnailZoomEnabled { get; set; }
 		int ThumbnailZoomFactor { get; set; }
