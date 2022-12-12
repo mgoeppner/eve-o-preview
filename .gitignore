@@ -6,3 +6,7 @@ src/.vs/
 *.suo
 *.user
 *.DotSettings
+.vs/eve-o-preview/FileContentIndex/56d458e4-7986-499c-86da-c5dea9d98014.vsidx
+.vs/eve-o-preview/FileContentIndex/read.lock
+.vs/eve-o-preview/v17/.wsuo
+.vs/slnx.sqlite
